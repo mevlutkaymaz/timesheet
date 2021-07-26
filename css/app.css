@@ -1,0 +1,106 @@
+input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        body {
+            margin-top: 20pt;
+        }
+
+        /* Text rotation */
+
+        .rotate {
+            /* FF3.5+ */
+            -moz-transform: rotate(-90.0deg);
+            /* Opera 10.5 */
+            -o-transform: rotate(-90.0deg);
+            /* Saf3.1+, Chrome */
+            -webkit-transform: rotate(-90.0deg);
+            /* IE6,IE7 */
+            filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=0.083);
+            /* IE8 */
+            -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)";
+            /* Standard */
+            transform: rotate(-90.0deg);
+
+        }
+
+
+        .headercol1 {
+            font-family: Calibri;
+            font-size: 11pt;
+            padding-top: 2pt;
+            vertical-align: middle;
+            border-bottom: 2pt solid #000000;
+        }
+
+
+        .week-cells {
+            font-family: Calibri;
+            font-size: 11pt;
+            vertical-align: middle;
+            width: 65pt;
+            border: 1px solid black;
+            text-align: center;
+            padding: 0;
+            height: 12pt;
+        }
+
+        .footer-cells {
+            font-family: Calibri;
+            font-size: 11pt;
+            vertical-align: middle;
+            border: 1px solid black;
+            text-align: center;
+            padding: 0;
+            height: 12pt;
+        }
+
+        select:focus {
+            background-color: #ffffa0;
+        }
+
+        input:focus {
+            background-color: #faf0b7;
+        }
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-overflow: '';
+            outline: 0px;
+            border: 0px;
+        }
+
+        @media print {
+            #PrintButton {
+                display: none;
+            }
+
+            #disclaimer {
+                display: none;
+            }
+
+            .checkboxes {
+                display: none;
+            }
+
+            .holidayWarning {
+                display: none;
+            }
+
+            #regularHoursDefLabel {
+                display: none;
+            }
+        }
+
+        @page {
+            margin: 10mm 15mm 10mm 15mm;
+            size: auto;
+            margin-bottom: 5mm;
+        }
+
+        .asterisks {
+            display: none;
+        }

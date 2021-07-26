@@ -1,0 +1,968 @@
+<html>
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145598483-1"></script>
+	<script>
+  		window.dataLayer = window.dataLayer || [];
+  		function gtag(){dataLayer.push(arguments);}
+  		gtag('js', new Date());
+  		gtag('config', 'UA-145598483-1');
+	</script>
+    <meta name="author" content="Hasan Irmak">
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <title>Timesheet App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="css/jquery.timeentry.css">
+    <script src="js/jquery.plugin.min.js"></script>
+    <script src="js/jquery.timeentry.js"></script>
+    <script src="js/app.js"></script>  
+</head>
+<body>
+    <center>
+        <!-- HPS header -->
+        <div class="container col-lg-12 col-md-12">
+            <table style="width: 580pt;">
+                <tr>
+                    <td style="font-family: Calibri; font-size: 18pt; text-align: center;">
+                        <strong>MSE NonExempt Employee Time Sheet 2021-2022</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <!-- Info -->
+        <div class="container col-lg-12 col-md-12" style="padding-top: 10pt">
+            <table style="width: 580pt;">
+                <tr>
+                    <td class="headercol1" style="width: 150pt;">Campus</td>
+                    <td style="font-family: Calibri; font-size: 11pt; padding-left: 6pt;">
+                        <div>
+                            <select id="CampusSelector" style="border: 0px; outline: 0px; line-height: 11pt;">
+                                <option selected>Choose Campus</option>
+                               <option>MSE - Mendenhall</option>
+                                <option>MSE - Winchester</option>
+                                <option>MSE - Cordova Elementary</option>
+                                <option>MSE - Cordova Secondary</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td style="width: 80pt;"></td>
+                    <td class="headercol1" style="text-align: right; vertical-align: bottom; width: 150pt;">Position:</td>
+                    <td style="font-family: Calibri; font-size: 11pt;  padding-left: 10pt; margin-right: 0px;">
+                        <!-- <input type="text" id="position" placeholder="enter position" style="border: 0px;  width: 80pt; line-height: 11pt;" required> -->
+                        <select onchange="checkIntern()" id="position" style="border: 0px; outline: 0px; line-height: 11pt;">
+                            <option selected>Choose Position</option>                          
+                            <option>Secretary</option>
+                            <option>Sub Teacher</option>
+                            <option>Other</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="headercol1">Employee name</td>
+                    <td style="font-family: Calibri; font-size: 11pt; padding-left: 10pt;">
+                        <input type="text" id="fullname" placeholder="full name" style="border: 0px; line-height: 11pt;">
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="headercol1">Pay Period</td>
+                    <td style="padding-left: 6pt; font-family: Calibri; font-size: 11pt;" autofocus class="header-cells">
+                        <div>
+                            <select id="PeriodSelector" style="border: 0px; outline: 0px;">
+             <option id="m_period0" value="period0" selected>Choose Period</option>
+                                <option id="m_period2" value="period2">07/26/2021 - 08/08/2021</option>
+                                <option id="m_period3" value="period3">08/09/2021 - 08/22/2021</option>
+                                <option id="m_period4" value="period4">08/23/2021 - 09/05/2021</option>
+                                <option id="m_period5" value="period5">09/06/2021 - 09/19/2021</option>
+                                <option id="m_period6" value="period6">09/20/2021 - 10/03/2021</option>
+                                <option id="m_period7" value="period7">10/04/2021 - 10/17/2021</option>
+                                <option id="m_period8" value="period8">10/18/2021 - 10/31/2021</option>
+                                <option id="m_period9" value="period9">11/01/2021 - 11/14/2021</option>
+                                <option id="m_period10" value="period10">11/15/2021 - 11/28/2021</option>
+                                <option id="m_period11" value="period11">11/29/2021 - 12/12/2021</option>
+                                <option id="m_period12" value="period12">12/13/2021 - 12/26/2021</option>
+								
+                                <option id="m_period13" value="period13">12/27/2021 - 01/09/2022</option>
+                                <option id="m_period14" value="period14">01/10/2022 - 01/23/2022</option>
+                                <option id="m_period15" value="period15">01/24/2022 - 02/06/2022</option>
+                                <option id="m_period16" value="period16">02/07/2022 - 02/20/2022</option>
+                                <option id="m_period17" value="period17">02/21/2022 - 03/06/2022</option>
+                                <option id="m_period18" value="period18">03/07/2022 - 03/20/2022</option>
+                                <option id="m_period19" value="period19">03/21/2022 - 04/03/2022</option>
+                                <option id="m_period20" value="period20">04/04/2022 - 04/17/2022</option>
+                                <option id="m_period21" value="period21">04/18/2022 - 05/01/2022</option>
+                                <option id="m_period22" value="period22">05/02/2022 - 05/15/2022</option>
+                                <option id="m_period23" value="period23">05/16/2022 - 05/29/2022</option>
+                                <option id="m_period24" value="period24">05/30/2022 - 06/12/2022</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td></td>
+	                        <td rowspan="2" style="text-align: right; vertical-align: bottom;" class="headercol1">
+                        </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td class="headercol1"></td>
+                    <td style="padding-left: 10pt; font-family: Calibri; font-size: 11pt;">
+                        <div id="s"></div>
+                    </td>
+                    <td></td>
+                    <td style="padding-left: 10pt; font-family: Calibri; font-size: 11pt;">
+                        <div id="s"></div>
+                    </td>
+                    
+                </tr>
+                <tr class="holidayWarning"></tr>
+                <tr class="holidayWarning">
+                    <td colspan="5" style="color: red; text-align: center; margin: 0; padding: 0;">
+                        <h4>Mark the checkbox for holidays for accurate calculation !!!</h4>
+                        <h5>
+                            <em>Scheduled, Unscheduled and Absence hours are not reported for interns. Those fields will not
+                                be displayed for interns.</em>
+                        </h5>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <!-- Week 1 -->
+        <div id="week1" class="container col-lg-12 col-md-12" style="margin-top: 10pt;">
+
+            <table style="width: 580pt; border-collapse: collapse;">
+                <tbody>
+                    <tr>
+                        <td class="rotate" style="width: 40pt; border-top: 1px solid black; border-left: 1px solid black;" rowspan="10">
+                            <strong>Workweek&nbsp;1</strong>
+                        </td>
+                        <td class="week-cells" style="width: 140pt;">
+                            <strong>Date</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Hours Worked</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time In</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time Out</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Break</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time In</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time Out</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day0"></span>
+                            <span class="asterisks" id="asterisk0">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday0" title="Mark for holiday" onclick="addAsteriskToDate(0)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d10"></div>
+                        </td>
+                        <td class="week-cells" style="vertical-align: middle; padding: 0;">
+                            <input type="text" id="in_1_10" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_10" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d10"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_10" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_10" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day1"></span>
+                            <span class="asterisks" id="asterisk1">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday1" title="Mark for holiday" onclick="addAsteriskToDate(1)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d11"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_11" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_11" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d11"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_11" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_11" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day2"></span>
+                            <span class="asterisks" id="asterisk2">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday2" title="Mark for holiday" onclick="addAsteriskToDate(2)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d12"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_12" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_12" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d12"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_12" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_12" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day3"></span>
+                            <span class="asterisks" id="asterisk3">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday3" title="Mark for holiday" onclick="addAsteriskToDate(3)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d13"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_13" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_13" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d13"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_13" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_13" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day4"></span>
+                            <span class="asterisks" id="asterisk4">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday4" title="Mark for holiday" onclick="addAsteriskToDate(4)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d14"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_14" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_14" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d14"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_14" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_14" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <div id="day5"></div>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d15"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_15" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_15" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d15"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_15" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_15" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <div id="day6"></div>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d16"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_16" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_16" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d16"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_16" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_16" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-left: 0px;">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 4pt;">
+                            <strong>Regular Hours</strong> (max 40):</td>
+                        <td class="week-cells">
+                            <div id="total_w1"></div>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td colspan="3" class="week-cells" style="text-align: right; padding-right: 4pt;">
+                            <strong>Overtime Hours</strong> (after 40 hours):</td>
+                        <td class="week-cells">
+                            <div id="overtime_w1"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <!-- Week 2 -->
+        <div id="week2" class="container col-lg-12 col-md-12" style="margin-top: 15pt;">
+
+            <table style="width: 580pt; border-collapse: collapse;">
+                <tbody>
+                    <tr>
+                        <td class="rotate" style="width: 40pt; border-top: 1px solid black; border-left: 1px solid black;" rowspan="10">
+                            <strong>Workweek&nbsp;2</strong>
+                        </td>
+                        <td class="week-cells" style="width: 140pt;">
+                            <strong>Date</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Hours Worked</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time In</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time Out</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Break</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time In</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time Out</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day7"></span>
+                            <span class="asterisks" id="asterisk7">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday7" title="Mark for holiday" onclick="addAsteriskToDate(7)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d17"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_17" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_17" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d17"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_17" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_17" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day8"></span>
+                            <span class="asterisks" id="asterisk8">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday8" title="Mark for holiday" onclick="addAsteriskToDate(8)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d18"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_18" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_18" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d18"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_18" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_18" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day9"></span>
+                            <span class="asterisks" id="asterisk9">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday9" title="Mark for holiday" onclick="addAsteriskToDate(9)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d19"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_19" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_19" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d19"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_19" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_19" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day10"></span>
+                            <span class="asterisks" id="asterisk10">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday10" title="Mark for holiday" onclick="addAsteriskToDate(10)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d20"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_20" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_20" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d20"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_20" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_20" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day11"></span>
+                            <span class="asterisks" id="asterisk11">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday11" title="Mark for holiday" onclick="addAsteriskToDate(11)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d21"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_21" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_21" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d21"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_21" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_21" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <div id="day12"></div>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d22"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_22" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_22" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d22"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_22" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_22" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <div id="day13"></div>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d23"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_23" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_23" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d23"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_23" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_23" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 4pt;">
+                            <strong>Regular Hours</strong> (max 40):</td>
+                        <td class="week-cells">
+                            <div id="total_w2"></div>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td colspan="3" class="week-cells" style="text-align: right; padding-right: 4pt;">
+                            <strong>Overtime Hours</strong> (after 40 hours):</td>
+                        <td class="week-cells">
+                            <div id="overtime_w2"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <!-- Week 3 -->
+        <div id="week3" class="container col-lg-12 col-md-12" style="margin-top: 15pt; display: none;">
+
+            <table style="width: 580pt; border-collapse: collapse;">
+                <tbody>
+                    <tr>
+                        <td class="rotate" style="width: 40pt; border-top: 1px solid black; border-left: 1px solid black;" rowspan="10">
+                            <strong>Workweek&nbsp;3</strong>
+                        </td>
+                        <td class="week-cells" style="width: 140pt;">
+                            <strong>Date</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Hours Worked</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time In</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time Out</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Break</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time In</strong>
+                        </td>
+                        <td class="week-cells">
+                            <strong>Time Out</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day14"></span>
+                            <span class="asterisks" id="asterisk14">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday14" title="Mark for holiday" onclick="addAsteriskToDate(14)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d24"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_24" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_24" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d24"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_24" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_24" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day15"></span>
+                            <span class="asterisks" id="asterisk15">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday15" title="Mark for holiday" onclick="addAsteriskToDate(15)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d25"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_25" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_25" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d25"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_25" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_25" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day16"></span>
+                            <span class="asterisks" id="asterisk16">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday16" title="Mark for holiday" onclick="addAsteriskToDate(16)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d26"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_26" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_26" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d26"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_26" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_26" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day17"></span>
+                            <span class="asterisks" id="asterisk17">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday17" title="Mark for holiday" onclick="addAsteriskToDate(17)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d27"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_27" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_27" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d27"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_27" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_27" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <span id="day18"></span>
+                            <span class="asterisks" id="asterisk18">*</span>
+                            <span>
+                                <input type="checkbox" class="checkboxes" id="holiday18" title="Mark for holiday" onclick="addAsteriskToDate(18)">
+                            </span>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d28"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_28" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_28" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d28"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_28" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_28" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <div id="day19"></div>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d29"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_29" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_29" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d29"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_29" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_29" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 3pt;">
+                            <div id="day20"></div>
+                        </td>
+                        <td class="week-cells">
+                            <div id="total_d30"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_1_30" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_1_30" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <div id="break_d30"></div>
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="in_2_30" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                        <td class="week-cells">
+                            <input type="text" id="out_2_30" onchange="calculate(this);" onblur="" class="timecard" size="7" style="line-height: 11pt; border: 0px; outline: 0px; text-align: center;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="week-cells" style="text-align: right; padding-right: 4pt;">
+                            <strong>Regular Hours</strong> (max 40):</td>
+                        <td class="week-cells">
+                            <div id="total_w3"></div>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td colspan="3" class="week-cells" style="text-align: right; padding-right: 4pt;">
+                            <strong>Overtime Hours</strong> (after 40 hours):</td>
+                        <td class="week-cells">
+                            <div id="overtime_w3"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="container col-lg-12 col-md-12" style="margin-top: 10pt;">
+            <table style="width: 580pt;">
+                <tr>
+                    <td rowspan="5" style="width: 80pt;"></td>
+                    <td colspan="6" style="font-family: Calibri; font-size: 12pt; text-align: center; height: 20pt;">
+                        <strong>PAY PERIOD TOTALS TO REPORT to Payroll Department</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="footer-cells" style="text-align: right; height: 18pt; padding-right: 4pt;">
+                        <strong>Scheduled Hours</strong>
+                    </td>
+                    <td class="footer-cells">
+                        <div id="scheduledhours"></div>
+                    </td>
+                    <td class="footer-cells" style="text-align: right; height: 18pt; padding-right: 4pt; width: 120pt;">
+                        <span id="regularHoursDefLabel" style="color: red;">
+                            <strong>Total&nbsp;</strong>
+                        </span>
+                        <strong>Regular Hours</strong>
+                    </td>
+                    <td style="width: 50pt;" class="footer-cells">
+                        <div id="total_regular"></div>
+                    </td>
+                    <td class="footer-cells" style="text-align: right; padding-right: 4pt; width: 100pt;">
+                        <strong>Overtime Hours</strong>
+                    </td>
+                    <td class="footer-cells" style="width: 50pt;">
+                        <div id="total_overtime"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: right; padding-right: 4pt; font-family: Calibri; font-size: 10pt; height: 15pt;">
+                        &nbsp;</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="footer-cells" style="text-align: right; height: 18pt; padding-right: 4pt; width: 160pt;">
+                        <strong>Unscheduled Regular Hours</strong>
+                    </td>
+                    <td style="width: 50pt;" class="footer-cells">
+                        <!-- <input id="scheduledhours" style="border: 0; text-align: center;" type="number" min="0" max="120" onchange="scheduledhourlimiter();"
+                                required> -->
+                        <div id="unscheduledhours"></div>
+                    </td>
+                    <td class="footer-cells" style="text-align: right; padding-right: 4pt; width: 120pt;">
+                        <strong>Unpaid Absence</strong>
+                    </td>
+                    <td class="footer-cells">
+                        <div id="total_tardy"></div>
+                    </td>
+                    <td class="footer-cells" style="text-align: right; padding-right: 4pt; width: 100pt;">
+                        <strong>PTO Absence</strong>
+                    </td>
+                    <td class="footer-cells">
+                        <span id="absence"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="text-align: right; padding-right: 4pt; font-family: Calibri; font-size: 10pt; height: 15pt;">
+                        <strong>*</strong> marked days are holidays. Absence is not calculated for these days.
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <!-- Signatures -->
+        <div class="container col-lg-12 col-md-12" style="margin-top: 20pt;">
+            <table style="width: 580pt;">
+                <tr>
+                    <td style="text-align: left; height: 20pt; padding-left: 10pt; font-family: Calibri; font-size: 11pt;">
+                        <strong>Supervisor Signature:</strong>
+                    </td>
+                    <td></td>
+                    <td style="text-align: left; height: 20pt; padding-left: 10pt; font-family: Calibri; font-size: 11pt;">
+                        <strong>Employee Signature:</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Disclaimer and print button -->
+        <div class="container" id="disclaimer">
+            <table>
+                <tr>
+                    <td style="vertical-align: middle; text-align: center;">
+                        <button type="button" id="PrintButton" onClick="check_before_print();" class="btn btn-primary">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; height: 20pt; font-family: Calibri; font-size: 10pt; color: dimgray; padding-top: 30pt;">
+                       payroll@sememphis.org
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </center>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
